@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B27F55ED29903000005CC1ED /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F55EC29903000005CC1ED /* ImageModel.swift */; };
+		B27F55F3299047C3005CC1ED /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F55F2299047C3005CC1ED /* ImageManager.swift */; };
 		B2EBCC3129901A3200964904 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBCC3029901A3200964904 /* AppDelegate.swift */; };
 		B2EBCC3329901A3200964904 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBCC3229901A3200964904 /* SceneDelegate.swift */; };
 		B2EBCC3529901A3200964904 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EBCC3429901A3200964904 /* MainViewController.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		B27F55EC29903000005CC1ED /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		B27F55F2299047C3005CC1ED /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		B2EBCC2D29901A3200964904 /* testTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2EBCC3029901A3200964904 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B2EBCC3229901A3200964904 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,8 +63,26 @@
 		B27F55EF29904631005CC1ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B27F55F0299046FC005CC1ED /* Main View */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B27F55F0299046FC005CC1ED /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				B2EBCC3629901A3200964904 /* Main.storyboard */,
+				B2EBCC3429901A3200964904 /* MainViewController.swift */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		B27F55F129904799005CC1ED /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B27F55F2299047C3005CC1ED /* ImageManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		B2EBCC2429901A3200964904 = {
@@ -84,11 +104,10 @@
 		B2EBCC2F29901A3200964904 /* testTask */ = {
 			isa = PBXGroup;
 			children = (
-				B27F55EF29904631005CC1ED /* Views */,
+				B27F55F129904799005CC1ED /* Managers */,
 				B27F55EE299045C6005CC1ED /* Support Files */,
+				B27F55EF29904631005CC1ED /* Views */,
 				B27F55EB29902FDF005CC1ED /* Models */,
-				B2EBCC3429901A3200964904 /* MainViewController.swift */,
-				B2EBCC3629901A3200964904 /* Main.storyboard */,
 				B2EBCC3E29901A3400964904 /* Info.plist */,
 			);
 			path = testTask;
@@ -166,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2EBCC3529901A3200964904 /* MainViewController.swift in Sources */,
+				B27F55F3299047C3005CC1ED /* ImageManager.swift in Sources */,
 				B2EBCC3129901A3200964904 /* AppDelegate.swift in Sources */,
 				B2EBCC3329901A3200964904 /* SceneDelegate.swift in Sources */,
 				B27F55ED29903000005CC1ED /* ImageModel.swift in Sources */,
