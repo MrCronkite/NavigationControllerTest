@@ -10,12 +10,11 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-  
+   @IBOutlet weak var colletionView: UICollectionView!
+    
    private var imageArray: ImageModel?
     
    private let searchController = UISearchController(searchResultsController: nil)
-   private var filterImage = [String]()
-   private var filter = ["Vlad", "Dima", "Pasha", "Doma"]
     private var searchBarIsEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
@@ -31,11 +30,11 @@ class MainViewController: UIViewController {
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
+        
     }
     
-    
     private func makeRequest(_ searchString: String) {
-        guard let url = URL(string: "https://serpapi.com/search.json?engine=google&q=\(searchString)&gl=ru&gl=en&tbm=isch&start=0&num=20&ijn=0&tbs=m&") else { fatalError("Missing URL")}
+        guard let url = URL(string: "https://serpapi.com/search.json?q=\(searchString)&tbm=isch&ijn=0&api_key=391c4a57b050893349857efc7ae37298ac1343f03a52173a99724686e687ff9c") else { fatalError("Missing URL")}
                
         let urlRequest = URLRequest(url: url)
         
@@ -53,16 +52,9 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
         makeRequest(searchController.searchBar.text!)
-        print(imageArray as Any)
+        print(imageArray?.imagesResults.count as Any)
         
     }
-    
-    private func filterContentForSearchText(_ searchImage: String) {
-      
-        filterImage = filter.filter {$0 == searchImage}
-    }
-
 }
 

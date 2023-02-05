@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uo3-3i-ECw">
-                                <rect key="frame" x="0.0" y="169" width="393" height="288"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uo3-3i-ECw">
+                                <rect key="frame" x="0.0" y="169" width="393" height="632"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C4f-Tg-Mh3">
                                     <size key="itemSize" width="128" height="128"/>
@@ -41,8 +40,17 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Uo3-3i-ECw" secondAttribute="bottom" constant="17" id="3NU-aJ-2P0"/>
+                            <constraint firstItem="Uo3-3i-ECw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="66" id="AZh-KO-rcr"/>
+                            <constraint firstItem="Uo3-3i-ECw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BlU-YZ-3jS"/>
+                            <constraint firstItem="Uo3-3i-ECw" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oiY-aH-IaM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gnQ-m3-fx1"/>
+                    <connections>
+                        <outlet property="colletionView" destination="Uo3-3i-ECw" id="4bd-OB-XBe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

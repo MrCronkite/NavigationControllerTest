@@ -47,6 +47,24 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		B27F55EE299045C6005CC1ED /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B2EBCC3B29901A3400964904 /* LaunchScreen.storyboard */,
+				B2EBCC3929901A3400964904 /* Assets.xcassets */,
+				B2EBCC3029901A3200964904 /* AppDelegate.swift */,
+				B2EBCC3229901A3200964904 /* SceneDelegate.swift */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		B27F55EF29904631005CC1ED /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B2EBCC2429901A3200964904 = {
 			isa = PBXGroup;
 			children = (
@@ -66,13 +84,11 @@
 		B2EBCC2F29901A3200964904 /* testTask */ = {
 			isa = PBXGroup;
 			children = (
+				B27F55EF29904631005CC1ED /* Views */,
+				B27F55EE299045C6005CC1ED /* Support Files */,
 				B27F55EB29902FDF005CC1ED /* Models */,
-				B2EBCC3029901A3200964904 /* AppDelegate.swift */,
-				B2EBCC3229901A3200964904 /* SceneDelegate.swift */,
 				B2EBCC3429901A3200964904 /* MainViewController.swift */,
 				B2EBCC3629901A3200964904 /* Main.storyboard */,
-				B2EBCC3929901A3400964904 /* Assets.xcassets */,
-				B2EBCC3B29901A3400964904 /* LaunchScreen.storyboard */,
 				B2EBCC3E29901A3400964904 /* Info.plist */,
 			);
 			path = testTask;
