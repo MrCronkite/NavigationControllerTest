@@ -10,6 +10,8 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    let imageManager = ImageManager()
+    
    @IBOutlet weak var colletionView: UICollectionView!
     
    private let searchController = UISearchController(searchResultsController: nil)
@@ -17,7 +19,7 @@ class MainViewController: UIViewController {
         guard let text = searchController.searchBar.text else { return false }
         return text.isEmpty
     }
-    let imageManager = ImageManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +30,8 @@ class MainViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+        colletionView.dataSource = self
     }
 
 }
@@ -36,7 +40,29 @@ extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         imageManager.makeRequest(searchController.searchBar.text!)
         print(imageManager.imageArray?.imagesResults.count as Any)
+        colletionView.reloadData()
         
     }
+}
+
+extension MainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        imageManager.imageArray?.imagesResults.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        var cell = UICollectionViewCell()
+        
+        if let contCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell {
+            contCell.configure(with: indexPath.row)
+            
+            cell = contCell
+        }
+        
+        return cell
+        
+    }
+    
+    
 }
 
