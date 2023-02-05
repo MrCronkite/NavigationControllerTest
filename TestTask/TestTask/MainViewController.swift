@@ -7,7 +7,11 @@
 
 import UIKit
 
+
 class MainViewController: UIViewController {
+    
+  
+   private var imageArray: ImageModel?
     
    private let searchController = UISearchController(searchResultsController: nil)
    private var filterImage = [String]()
@@ -26,6 +30,23 @@ class MainViewController: UIViewController {
         searchController.searchBar.placeholder = "Search"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+    }
+    
+    
+    private func makeRequest(_ searchString: String) {
+        guard let url = URL(string: "https://serpapi.com/search.json?engine=google&q=\(searchString)&gl=ru&gl=en&tbm=isch&start=0&num=20&ijn=0&tbs=m&") else { fatalError("Missing URL")}
+               
+        let urlRequest = URLRequest(url: url)
+        
+        let tasl = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            if let data = data, let decodeData = try? JSONDecoder().decode(ImageModel.self, from: data){
+                DispatchQueue.main.async {
+                    self.imageArray = decodeData
+                }
+            }
+        }
+        tasl.resume()
     }
 
 }
@@ -33,11 +54,13 @@ class MainViewController: UIViewController {
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
-        print(filterImage)
+        makeRequest(searchController.searchBar.text!)
+        print(imageArray as Any)
         
     }
     
     private func filterContentForSearchText(_ searchImage: String) {
+      
         filterImage = filter.filter {$0 == searchImage}
     }
 
