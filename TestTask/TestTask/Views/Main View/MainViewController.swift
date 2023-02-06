@@ -39,8 +39,10 @@ class MainViewController: UIViewController {
 extension MainViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         imageManager.makeRequest(searchController.searchBar.text!)
-        collectionView.reloadData()
         
+        imageManager.asyncUsual()
+        
+        collectionView.reloadData()
     }
 }
 
@@ -52,8 +54,12 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         if let contCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell {
-            contCell.fetchImage(imageManager.imageArray?.imagesResults[indexPath.row].link ?? "")
-            
+            if !imageManager.arreyImages.isEmpty {
+                let image = imageManager.arreyImages[indexPath.row]
+                contCell.imageView.image = image
+            } else {
+                contCell.imageView.image = UIImage(systemName: "pencil")
+            }
             cell = contCell
         }
         

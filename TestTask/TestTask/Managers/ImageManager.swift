@@ -13,9 +13,11 @@ import UIKit
 class ImageManager {
     
     var imageArray: ImageModel?
+    var imagesString = [String]()
+    var arreyImages = [UIImage?]()
     
     func makeRequest(_ searchString: String) {
-        guard let url = URL(string: "https://serpapi.com/search.json?q=\(searchString)&tbm=isch&ijn=0&api_key=391c4a57b050893349857efc7ae37298ac1343f03a52173a99724686e687ff9c") else { fatalError("Missing URL")}
+        guard let url = URL(string: "https://serpapi.com/search.json?q=\(searchString)&tbm=isch&ijn=0&api_key=6d95ddf74dbc6609eca937f6b7050855ba9602e5e064d738db5e0e2833666b21") else { fatalError("Missing URL")}
                
         let urlRequest = URLRequest(url: url)
         
@@ -32,18 +34,56 @@ class ImageManager {
     
     func asyncLoadImage(imageURL: URL,
                         runQueue: DispatchQueue,
-                        complitionQueue: DispatchQueue,
-                        complition: @escaping (UIImage?, Error?) -> ()){
+                        completionQueue: DispatchQueue,
+                        completion: @escaping (UIImage?, Error?) -> ()) {
         runQueue.async {
-            do{
+            print("_______________________\(imageURL)")
+            do {
                 let data = try Data(contentsOf: imageURL)
-                print(data)
-                complitionQueue.async { complition(UIImage(data: data), nil)}
+                completionQueue.async { completion(UIImage(data: data), nil)}
             } catch let error {
-                complitionQueue.async {
-                    complitionQueue.async { complition(nil, error)}
-                }
+                completionQueue.async { completion(nil, error)}
             }
         }
     }
+    
+    func asyncGroup(){
+        guard let arrey = imageArray?.imagesResults else {return}
+        for i in arrey {
+            self.imagesString.append(i.link)
+        }
+        for i in 0...10 {
+         asyncLoadImage(imageURL: URL(string: self.imagesString[i])!,
+                           runQueue: DispatchQueue.global(),
+                           completionQueue: DispatchQueue.main)
+            { result, error in
+                guard let image1 = result else {return}
+               // self.arreyImages.append(image1)
+            }
+        }
+        print(self.arreyImages)
+    }
+    
+    func asyncUsual (){
+        guard let arrey = imageArray?.imagesResults else {return}
+        for i in arrey {
+            self.imagesString.append(i.link)
+        }
+        
+        for i in 0...20 {
+            let url = URL(string: self.imagesString[i])
+            let request = URLRequest(url: url!)
+            let task = URLSession.shared.dataTask(with: request) {
+                (data, response, error) -> Void in
+                DispatchQueue.main.async {
+                    guard let data1 = data else {return}
+                    self.arreyImages.append(UIImage(data: data1))
+                }
+            }
+            task.resume()
+        }
+    }
+
+    
+    
 }
