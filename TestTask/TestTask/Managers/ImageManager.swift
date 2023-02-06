@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 
@@ -26,5 +27,23 @@ class ImageManager {
             }
         }
         tasl.resume()
+    }
+    
+    
+    func asyncLoadImage(imageURL: URL,
+                        runQueue: DispatchQueue,
+                        complitionQueue: DispatchQueue,
+                        complition: @escaping (UIImage?, Error?) -> ()){
+        runQueue.async {
+            do{
+                let data = try Data(contentsOf: imageURL)
+                print(data)
+                complitionQueue.async { complition(UIImage(data: data), nil)}
+            } catch let error {
+                complitionQueue.async {
+                    complitionQueue.async { complition(nil, error)}
+                }
+            }
+        }
     }
 }
