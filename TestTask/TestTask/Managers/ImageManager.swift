@@ -32,37 +32,37 @@ class ImageManager {
     }
     
     
-    func asyncLoadImage(imageURL: URL,
-                        runQueue: DispatchQueue,
-                        completionQueue: DispatchQueue,
-                        completion: @escaping (UIImage?, Error?) -> ()) {
-        runQueue.async {
-            print("_______________________\(imageURL)")
-            do {
-                let data = try Data(contentsOf: imageURL)
-                completionQueue.async { completion(UIImage(data: data), nil)}
-            } catch let error {
-                completionQueue.async { completion(nil, error)}
-            }
-        }
-    }
-    
-    func asyncGroup(){
-        guard let arrey = imageArray?.imagesResults else {return}
-        for i in arrey {
-            self.imagesString.append(i.link)
-        }
-        for i in 0...10 {
-         asyncLoadImage(imageURL: URL(string: self.imagesString[i])!,
-                           runQueue: DispatchQueue.global(),
-                           completionQueue: DispatchQueue.main)
-            { result, error in
-                guard let image1 = result else {return}
-               // self.arreyImages.append(image1)
-            }
-        }
-        print(self.arreyImages)
-    }
+//    func asyncLoadImage(imageURL: URL,
+//                        runQueue: DispatchQueue,
+//                        completionQueue: DispatchQueue,
+//                        completion: @escaping (UIImage?, Error?) -> ()) {
+//        runQueue.async {
+//            print("_______________________\(imageURL)")
+//            do {
+//                let data = try Data(contentsOf: imageURL)
+//                completionQueue.async { completion(UIImage(data: data), nil)}
+//            } catch let error {
+//                completionQueue.async { completion(nil, error)}
+//            }
+//        }
+//    }
+//
+//    func asyncGroup(){
+//        guard let arrey = imageArray?.imagesResults else {return}
+//        for i in arrey {
+//            self.imagesString.append(i.link)
+//        }
+//        for i in 0...10 {
+//         asyncLoadImage(imageURL: URL(string: self.imagesString[i])!,
+//                           runQueue: DispatchQueue.global(),
+//                           completionQueue: DispatchQueue.main)
+//            { result, error in
+//                guard let image1 = result else {return}
+//               // self.arreyImages.append(image1)
+//            }
+//        }
+//        print(self.arreyImages)
+//    }
     
     func asyncUsual (){
         guard let arrey = imageArray?.imagesResults else {return}
