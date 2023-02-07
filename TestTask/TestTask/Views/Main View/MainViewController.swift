@@ -62,15 +62,16 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let contCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
-//            if !self.imageManager.arreyImages.isEmpty {
-//                let image = self.imageManager.arreyImages[indexPath.row]
-//                contCell.imageView.image = UIImage(data: image)
-//                collectionView.reloadData()
-//            } else {
         contCell.imageView.image = UIImage(data: self.imageManager.arreyImages[indexPath.row])
         return contCell
-        
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "ImageCarouselStoryboard", bundle: nil)
+        let imageCarouselVC = storyboard.instantiateViewController(withIdentifier: "ImageCarousel") as! ImageCarouselController
+        imageCarouselVC.data = self.imageManager.arreyImages
+        imageCarouselVC.numberCell = indexPath.row
+        show(imageCarouselVC, sender: nil)
+    }
 }
 
