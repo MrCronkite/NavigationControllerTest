@@ -22,6 +22,7 @@ class ImageManager {
         let urlRequest = URLRequest(url: url)
         
         let tasl = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
+            self.imageArray = nil
             if let data = data, let decodeData = try? JSONDecoder().decode(ImageModel.self, from: data){
                 DispatchQueue.main.async {
                     self.imageArray = decodeData
@@ -38,17 +39,17 @@ class ImageManager {
     func asyncUsual (){
         guard let arrey = imageArray?.imagesResults else {return}
         for i in arrey {
-            self.imagesString.append(i.link)
+            self.imagesString.append(i.thumbnail)
         }
+
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)){
-            for i in 0...20 {
+            for i in 0...30 {
                 let url = URL(string: self.imagesString[i])
                 let request = URLRequest(url: url!)
                 let task = URLSession.shared.dataTask(with: request) {
                     (data, response, error) -> Void in
                     DispatchQueue.main.async {
                         self.arreyImages.append(data!)
-                        print(self.arreyImages)
                     }
                 }
                 task.resume()

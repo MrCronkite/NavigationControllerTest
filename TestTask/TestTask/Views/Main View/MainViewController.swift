@@ -33,6 +33,7 @@ class MainViewController: UIViewController {
         searchController.searchBar.delegate = self
         
         collectionView.dataSource = self
+        collectionView.delegate = self
     }
 
 }
@@ -44,8 +45,7 @@ extension MainViewController: UISearchBarDelegate {
         
         imageManager.makeRequest(text)
         
-        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(7)) {
-            print(self.imageManager.arreyImages)
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(4)) {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -55,27 +55,22 @@ extension MainViewController: UISearchBarDelegate {
 
 
 
-extension MainViewController: UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imageManager.imageArray?.imagesResults.count ?? 0
+        return self.imageManager.arreyImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
-        if let contCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? CollectionViewCell {
-            if !imageManager.arreyImages.isEmpty {
-                let image = imageManager.arreyImages[3]
-                contCell.imageView.image = UIImage(data: image)
-            } else {
-                contCell.imageView.image = UIImage(systemName: "pencil")
-            }
-            cell = contCell
-            collectionView.reloadData()
-        }
-        return cell
+        let contCell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
+//            if !self.imageManager.arreyImages.isEmpty {
+//                let image = self.imageManager.arreyImages[indexPath.row]
+//                contCell.imageView.image = UIImage(data: image)
+//                collectionView.reloadData()
+//            } else {
+        contCell.imageView.image = UIImage(data: self.imageManager.arreyImages[indexPath.row])
+        return contCell
         
     }
-    
     
 }
 
