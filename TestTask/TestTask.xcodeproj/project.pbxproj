@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B223412F2992F9F200258BF7 /* ImageCarouselStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B223412E2992F9F200258BF7 /* ImageCarouselStoryboard.storyboard */; };
 		B22341312992FA2F00258BF7 /* ImageCarouselController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22341302992FA2F00258BF7 /* ImageCarouselController.swift */; };
+		B223413429937A7400258BF7 /* WebViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B223413329937A7400258BF7 /* WebViewStoryboard.storyboard */; };
+		B223413629937A8D00258BF7 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B223413529937A8D00258BF7 /* WebViewController.swift */; };
 		B27F55ED29903000005CC1ED /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F55EC29903000005CC1ED /* ImageModel.swift */; };
 		B27F55F3299047C3005CC1ED /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F55F2299047C3005CC1ED /* ImageManager.swift */; };
 		B27F55F629904B59005CC1ED /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F55F529904B59005CC1ED /* CollectionViewCell.swift */; };
@@ -23,6 +25,8 @@
 /* Begin PBXFileReference section */
 		B223412E2992F9F200258BF7 /* ImageCarouselStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageCarouselStoryboard.storyboard; sourceTree = "<group>"; };
 		B22341302992FA2F00258BF7 /* ImageCarouselController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCarouselController.swift; sourceTree = "<group>"; };
+		B223413329937A7400258BF7 /* WebViewStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WebViewStoryboard.storyboard; sourceTree = "<group>"; };
+		B223413529937A8D00258BF7 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B27F55EC29903000005CC1ED /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		B27F55F2299047C3005CC1ED /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		B27F55F529904B59005CC1ED /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -56,6 +60,15 @@
 			path = ImageCarousel;
 			sourceTree = "<group>";
 		};
+		B223413229937A3E00258BF7 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				B223413329937A7400258BF7 /* WebViewStoryboard.storyboard */,
+				B223413529937A8D00258BF7 /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		B27F55EB29902FDF005CC1ED /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,9 +91,10 @@
 		B27F55EF29904631005CC1ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B223413229937A3E00258BF7 /* WebView */,
+				B27F55F0299046FC005CC1ED /* Main View */,
 				B223412D2992F92700258BF7 /* ImageCarousel */,
 				B27F55F429904B0F005CC1ED /* CollectionViewCell */,
-				B27F55F0299046FC005CC1ED /* Main View */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -200,6 +214,7 @@
 				B223412F2992F9F200258BF7 /* ImageCarouselStoryboard.storyboard in Resources */,
 				B2EBCC3A29901A3400964904 /* Assets.xcassets in Resources */,
 				B2EBCC3829901A3200964904 /* Main.storyboard in Resources */,
+				B223413429937A7400258BF7 /* WebViewStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +231,7 @@
 				B27F55F629904B59005CC1ED /* CollectionViewCell.swift in Sources */,
 				B2EBCC3129901A3200964904 /* AppDelegate.swift in Sources */,
 				B2EBCC3329901A3200964904 /* SceneDelegate.swift in Sources */,
+				B223413629937A8D00258BF7 /* WebViewController.swift in Sources */,
 				B27F55ED29903000005CC1ED /* ImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

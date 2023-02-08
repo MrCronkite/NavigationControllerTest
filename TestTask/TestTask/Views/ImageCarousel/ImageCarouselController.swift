@@ -7,19 +7,33 @@
 
 import UIKit
 
+
 class ImageCarouselController: UIViewController {
     
-
-    @IBOutlet weak var imageViewCarousel: UIImageView!
+    var arreyData = [ImagesResult]()
     var numberCell: Int = 0
     var data: [Data] = []
+    
+    @IBOutlet weak var imageViewCarousel: UIImageView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        if !data.isEmpty {
+            imageViewCarousel.image = UIImage(data: data[numberCell])
+        }
+       
     }
+    
+    
+    @IBAction func showWebView(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "WebViewStoryboard", bundle: nil)
+        guard let webViewVC = storyboard.instantiateViewController(identifier: "WebViewID") as? WebViewController else {return}
+        webViewVC.link = arreyData[self.numberCell].link
+        present(webViewVC, animated: true)
+        print("hello")
+    }
+    
    
     @IBAction func buttonPrev(_ sender: Any) {
         numberCell -= 1

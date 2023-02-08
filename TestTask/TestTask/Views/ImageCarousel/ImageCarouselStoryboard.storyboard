@@ -17,20 +17,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xQu-Su-hMO">
-                                <rect key="frame" x="0.0" y="102" width="393" height="484"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="484" id="ddo-xQ-xuc"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="59" width="393" height="707"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="211" translatesAutoresizingMaskIntoConstraints="NO" id="7sg-qi-jzJ">
-                                <rect key="frame" x="16" y="621" width="361" height="34.333333333333371"/>
+                                <rect key="frame" x="16" y="773.66666666666663" width="361" height="34.333333333333371"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uG-K7-eu8">
                                         <rect key="frame" x="0.0" y="0.0" width="75" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Prev"/>
                                         <connections>
-                                            <action selector="buttonPrev:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Brw-AO-e3g"/>
+                                            <action selector="buttonPrev:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="8Nf-nG-QaA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WIG-4X-ZYD">
@@ -38,7 +35,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Next"/>
                                         <connections>
-                                            <action selector="buttonNext:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="O7C-UN-rk6"/>
+                                            <action selector="buttonNext:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ko3-kP-P8K"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -46,20 +43,34 @@
                                     <constraint firstAttribute="height" constant="34.329999999999998" id="bar-XO-35Y"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNl-3F-q7i">
+                                <rect key="frame" x="352" y="75" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="0ct-jz-70C"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                                <connections>
+                                    <action selector="showWebView:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="HWp-AE-jnb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7sg-qi-jzJ" secondAttribute="trailing" constant="16" id="2To-P5-LfN"/>
-                            <constraint firstItem="7sg-qi-jzJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="33w-Po-6ht"/>
-                            <constraint firstItem="xQu-Su-hMO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Dtz-7b-sJK"/>
-                            <constraint firstItem="xQu-Su-hMO" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="LqJ-EM-LPo"/>
-                            <constraint firstItem="7sg-qi-jzJ" firstAttribute="top" secondItem="xQu-Su-hMO" secondAttribute="bottom" constant="35" id="h1J-cN-aBj"/>
-                            <constraint firstItem="xQu-Su-hMO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="43" id="j4r-vL-mzk"/>
+                            <constraint firstItem="xQu-Su-hMO" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="06X-uh-uEL"/>
+                            <constraint firstItem="7sg-qi-jzJ" firstAttribute="top" secondItem="xQu-Su-hMO" secondAttribute="bottom" constant="7.6699999999999999" id="7mD-bT-9gF"/>
+                            <constraint firstItem="xQu-Su-hMO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Ckv-gn-04b"/>
+                            <constraint firstItem="yNl-3F-q7i" firstAttribute="trailing" secondItem="7sg-qi-jzJ" secondAttribute="trailing" id="KHB-VV-NVx"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7sg-qi-jzJ" secondAttribute="trailing" constant="16" id="U3o-v9-mW2"/>
+                            <constraint firstItem="xQu-Su-hMO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="cAW-eh-G6l"/>
+                            <constraint firstItem="yNl-3F-q7i" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="gsT-Ss-o5K"/>
+                            <constraint firstItem="yNl-3F-q7i" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="352" id="i5i-hw-chN"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7sg-qi-jzJ" secondAttribute="bottom" constant="10" id="ixM-cD-ElA"/>
+                            <constraint firstItem="7sg-qi-jzJ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="wUQ-S3-3eG"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="imageViewCarousel" destination="xQu-Su-hMO" id="tOe-c7-wDM"/>
+                        <outlet property="imageViewCarousel" destination="xQu-Su-hMO" id="VE1-sT-phA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -68,6 +79,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

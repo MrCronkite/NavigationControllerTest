@@ -12,13 +12,13 @@ class MainViewController: UIViewController {
     
     let imageManager = ImageManager()
     
-    
     @IBOutlet weak var collectionView: UICollectionView!
     private let searchController = UISearchController(searchResultsController: nil)
-   private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else { return false }
-        return text.isEmpty
-    }
+    var alert = UIAlertController()
+//    private var searchBarIsEmpty: Bool {
+//        guard let text = searchController.searchBar.text else { return false }
+//        return text.isEmpty
+//    }
     
     
     override func viewDidLoad() {
@@ -42,8 +42,15 @@ class MainViewController: UIViewController {
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let text = searchBar.text else {return}
+        let engCharacters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
+        if text == text.filter({engCharacters.contains($0)}){
+            imageManager.makeRequest(text)
+        } else {
+            alert = UIAlertController(title: "Неверный текст", message: "Введите текст используя английскую клавиатуру, не используйте пробелы и другие символы", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default))
+            self.present(alert, animated: true)
+        }
         
-        imageManager.makeRequest(text)
         
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(4)) {
             DispatchQueue.main.async {
@@ -68,9 +75,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "ImageCarouselStoryboard", bundle: nil)
-        let imageCarouselVC = storyboard.instantiateViewController(withIdentifier: "ImageCarousel") as! ImageCarouselController
+        guard let imageCarouselVC = storyboard.instantiateViewController(withIdentifier: "ImageCarousel") as? ImageCarouselController else { return }
         imageCarouselVC.data = self.imageManager.arreyImages
         imageCarouselVC.numberCell = indexPath.row
+        imageCarouselVC.arreyData = (imageManager.imageArray!.imagesResults)
         show(imageCarouselVC, sender: nil)
     }
 }
