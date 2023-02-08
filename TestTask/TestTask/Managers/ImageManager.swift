@@ -10,40 +10,44 @@ import UIKit
 
 
 
-class ImageManager {
+final class ImageManager {
     
-    var imageArray: ImageModel?
+    var imagesModel: ImageModel?
     var imagesString = [String]()
     var arreyImages = [Data]()
     
+    let keyApi = "6d95ddf74dbc6609eca937f6b7050855ba9602e5e064d738db5e0e2833666b21"
+    
     func makeRequest(_ searchString: String) {
-        guard let url = URL(string: "https://serpapi.com/search.json?q=\(searchString)&tbm=isch&ijn=0&api_key=6d95ddf74dbc6609eca937f6b7050855ba9602e5e064d738db5e0e2833666b21") else { fatalError("Missing URL")}
+        guard let url = URL(string: "https://serpapi.com/search.json?q=\(searchString)&tbm=isch&ijn=0&api_key=\(keyApi)") else { fatalError("Missing URL")}
         
         let urlRequest = URLRequest(url: url)
         
         let tasl = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            self.imageArray = nil
+            self.imagesModel = nil
+            self.arreyImages = []
+            self.imagesString = []
             if let data = data, let decodeData = try? JSONDecoder().decode(ImageModel.self, from: data){
                 DispatchQueue.main.async {
-                    self.imageArray = decodeData
+                    self.imagesModel = decodeData
                 }
             }
         }
         tasl.resume()
-        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(2)){
+        
+        DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)){
             self.asyncUsual()
         }
     }
     
-    
     func asyncUsual (){
-        guard let arrey = imageArray?.imagesResults else {return}
+        guard let arrey = imagesModel?.imagesResults else {return}
         for i in arrey {
             self.imagesString.append(i.thumbnail)
         }
-
+        
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(1)){
-            for i in 0...30 {
+            for i in 0...(self.imagesString.count - 1) {
                 let url = URL(string: self.imagesString[i])
                 let request = URLRequest(url: url!)
                 let task = URLSession.shared.dataTask(with: request) {

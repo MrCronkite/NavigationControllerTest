@@ -10,20 +10,16 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let imageManager = ImageManager()
+    private let imageManager = ImageManager()
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
-    private let searchController = UISearchController(searchResultsController: nil)
-    var alert = UIAlertController()
-//    private var searchBarIsEmpty: Bool {
-//        guard let text = searchController.searchBar.text else { return false }
-//        return text.isEmpty
-//    }
     
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var alert = UIAlertController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
@@ -34,10 +30,11 @@ class MainViewController: UIViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        activityIndicator.isHidden = true
     }
-
+    
 }
-
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -45,22 +42,23 @@ extension MainViewController: UISearchBarDelegate {
         let engCharacters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM"
         if text == text.filter({engCharacters.contains($0)}){
             imageManager.makeRequest(text)
+            activityIndicator.isHidden = false
+            activityIndicator.startAnimating()
         } else {
             alert = UIAlertController(title: "Неверный текст", message: "Введите текст используя английскую клавиатуру, не используйте пробелы и другие символы", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .default))
             self.present(alert, animated: true)
         }
         
-        
         DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(4)) {
             DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+                self.collectionView.isHidden = false
                 self.collectionView.reloadData()
             }
         }
     }
 }
-
-
 
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -78,7 +76,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         guard let imageCarouselVC = storyboard.instantiateViewController(withIdentifier: "ImageCarousel") as? ImageCarouselController else { return }
         imageCarouselVC.data = self.imageManager.arreyImages
         imageCarouselVC.numberCell = indexPath.row
-        imageCarouselVC.arreyData = (imageManager.imageArray!.imagesResults)
+        imageCarouselVC.arreyData = (imageManager.imagesModel!.imagesResults)
         show(imageCarouselVC, sender: nil)
     }
 }

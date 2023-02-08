@@ -10,7 +10,7 @@ import Foundation
 // MARK: - ImageModel
 struct ImageModel: Codable {
     let imagesResults: [ImagesResult]
-
+    
     enum CodingKeys: String, CodingKey {
         case imagesResults = "images_results"
     }
@@ -26,7 +26,7 @@ struct ImagesResult: Codable {
     let originalWidth, originalHeight: Int
     let isProduct: Bool
     let inStock: Bool?
-
+    
     enum CodingKeys: String, CodingKey {
         case position, thumbnail, source, title, link, original
         case originalWidth = "original_width"
